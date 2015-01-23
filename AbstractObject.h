@@ -3,16 +3,31 @@
 
 #include <string>
 
-#include "Math/Vec2.h"
+#include "Math/Math.h"
 
 class AbstractObject
 {
  public:
-  virtual void Update(float dt);
+  AbstractObject(std::string newIdentifier);
+
+  virtual void Update(float dt) {};
   
- private:
-  Math::Vec2 position;
-  Math::Vec2 speed;
+  void SetDirection(float newDirection);
+  void SetPosition(float newX, float newY);
+  void SetSpeed(float newSpeed);
+
+  void UpdatePositions(float dt);
+  
+  //private:
+  float direction;
+  float height;
+  float width;
+  float x;
+  float xSpeed;
+  float y;
+  float ySpeed;
+
+  std::string identifier;
 };
 
 #endif
