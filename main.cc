@@ -6,10 +6,11 @@
 
 #endif
 
+#include <iostream>
 #include <vector>
 
 #include "Assets.h"
-
+#include "level.h"
 //SDL
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -20,6 +21,8 @@ std::vector<SDL_Texture*> textures;
 //Exit condition
 bool quit = false;
 
+//Level
+Level level(32,24);
 
 //Functions
 void InitSDL();
@@ -31,6 +34,8 @@ int main()
     //INIT
     InitSDL();
     LoadAssets();
+    
+    level.SetLevel(0);
     
     while( !quit )
     {
@@ -45,11 +50,25 @@ int main()
         
         //Input?
         
+        
+        
         //Draw?
         
         SDL_RenderClear( renderer );
-        SDL_RenderCopy( renderer, textures[0] , NULL, NULL );
-        SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+        
+        for( int i=0; i < 32; ++i )
+        {
+            for( int j=0; j < 24; ++j )
+            {
+                int tid = level.at(i,j).n;
+                std::cout << tid << std::endl;
+                SDL_Rect dst { i*32, j*32, 32, 32 };
+                SDL_RenderCopy( renderer, textures[tid], NULL, &dst );
+            }
+        }
+        
+        //SDL_RenderCopy( renderer, textures[0] , NULL, NULL );
+        //SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
         SDL_RenderPresent( renderer );
         
     }
@@ -60,7 +79,7 @@ int main()
 void InitSDL()
 {
     SDL_Init( SDL_INIT_EVERYTHING );
-    window = SDL_CreateWindow( "GGJ15", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 768, SDL_WINDOW_RESIZABLE );
+    window = SDL_CreateWindow( "GGJ15", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 768, SDL_WINDOW_SHOWN );
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 }
 

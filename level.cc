@@ -36,5 +36,5 @@ void Level::SetLevel( int lvl )
             int id = levels[lvl][i][j];
             map[i][j].n = id;
             map[i][j].solid = level_map[id]; 
-        }   
+        }
 }
