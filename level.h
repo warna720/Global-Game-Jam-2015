@@ -12,6 +12,8 @@ public:
 	Level(int x, int y);
 
 	Cell& at(int x, int y);
+	
+	void SetLevel( int lvl );
 
 private:
 	std::vector< std::vector<Cell> > map;

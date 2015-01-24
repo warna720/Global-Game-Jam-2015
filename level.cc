@@ -2,11 +2,13 @@
 
 #include <iostream>
 
-Level::Level(int x, int y) : map(x, std::vector<Cell>(y)){}
+#include "level_defs.h"
+
+Level::Level(int x, int y) : map(y, std::vector<Cell>(x)){}
 
 Cell& Level::at(int x, int y)
 {
-	if (x+1 > map.size() || x < 0)
+	if (y+1 > map.size() || y < 0)
 	{
 		std::cerr << "X coord out of bounds" << std::endl;
 		std::cerr << "X: " << x << std::endl;
@@ -14,7 +16,7 @@ Cell& Level::at(int x, int y)
 
 		exit(1);		
 	}
-	else if (y+1 > map[x].size() || y < 0)
+	else if (x+1 > map[y].size() || x < 0)
 	{
 		std::cerr << "Y coord out of bounds" << std::endl;
 		std::cerr << "Y: " << y << std::endl;
@@ -23,5 +25,16 @@ Cell& Level::at(int x, int y)
 		exit(1);
 	}
 
-	return map[x][y];
+	return map[y][x];
+}
+
+void Level::SetLevel( int lvl )
+{
+    for( int i=0; i < 24; ++i )
+        for( int j=0; j < 32; ++j )
+        {
+            int id = levels[lvl][i][j];
+            map[i][j].n = id;
+            map[i][j].solid = level_map[id]; 
+        }   
 }

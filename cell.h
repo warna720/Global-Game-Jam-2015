@@ -8,7 +8,7 @@ class Cell
 
 public:
 	
-	Cell( bool solid_a, int n_a );
+	Cell();
 
 	bool solid;
 	int n;
