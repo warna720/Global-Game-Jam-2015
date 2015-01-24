@@ -8,9 +8,9 @@ class Cell
 
 public:
 	
-	Cell();
+	Cell( bool solid_a, int n_a );
 
-	std::string name;
+	bool solid;
 	int n;
 
 private:
