@@ -8,7 +8,7 @@
 class AbstractObject
 {
  public:
-  AbstractObject(std::string newIdentifier);
+  AbstractObject(std::string newIdentifier, float newX, float newY);
 
   virtual void Update(float dt) {};
   
@@ -22,10 +22,13 @@ class AbstractObject
   float direction;
   float height;
   float width;
+  float storedSpeed;
   float x;
   float xSpeed;
   float y;
   float ySpeed;
+
+  int id;
 
   std::string identifier;
 };

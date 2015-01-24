@@ -5,11 +5,12 @@
 #include <stack>
 
 #include "AbstractObject.h"
+#include "Math/Math.h"
 
 class PlayerObject : public AbstractObject
 {
  public:
-  Player(float newX, float newY);
+  PlayerObject(float newX, float newY);
 
   void Update(float dt);
 
