@@ -1,5 +1,5 @@
 #include "PlayerObject.h"
-//testing
+
 PlayerObject::PlayerObject(float newX, float newY) :
   AbstractObject("player", newX, newY)
 {
@@ -8,6 +8,7 @@ PlayerObject::PlayerObject(float newX, float newY) :
 void PlayerObject::Update(float dt)
 {
   std::string impulse;
+  SetSpeed(0);
   while (!impulseStack.empty())
   {
     impulse = impulseStack.top();
